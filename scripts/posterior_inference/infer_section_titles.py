@@ -33,6 +33,8 @@ def main(args):
     for sample in tqdm(data):
         sections = sample['sections']
         section_names = sample['section_names']
+        if section_names is None:
+            section_names = ["none"] * len(sections)
         predicted_section_names = []
         for section, section_name in zip(sections, section_names):
             inputs = tokenizer(section, padding='max_length', max_length=512, truncation=True)
